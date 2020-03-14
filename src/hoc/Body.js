@@ -1,4 +1,3 @@
-
-const body = (props) => {props.children};
+const body = props => props.children;
 
 export default body
