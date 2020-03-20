@@ -9,7 +9,7 @@ const closeIcon = (props) =>{
         <FontAwesomeIcon 
         icon={faTimes} 
         onClick={props.clicked} 
-        style={{marginLeft: "90%", fontSize:"1.5em"}}/>
+        style={{marginLeft: "95%", fontSize:"1.5em"}}/>
         
     )
 }
