@@ -1,0 +1,10 @@
+.ToggleButton{
+    color:white;
+    font-size: 1.8em;
+}
+
+@media (min-width: 500px) {
+    .ToggleButton {
+        display: none;
+    }
+}
