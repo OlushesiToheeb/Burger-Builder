@@ -3,7 +3,7 @@ import "./Backdrop.css";
 
 const backDrop =(props )=>(
 
-    props.show ? <div 
+    props.show || props.open ? <div 
     className="Backdrop"
     onClick={props.closed}></div> : null
 );

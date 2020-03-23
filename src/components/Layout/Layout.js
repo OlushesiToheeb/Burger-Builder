@@ -3,13 +3,28 @@ import Body from '../../hoc/Body'
 import "./Layout.css";
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
-const layout = (props) =>(
-        <Body>
-            <Toolbar />
-            <SideDrawer />
-            <main className="content">{props.children}</main>
-        </Body>
-)
 
 
-export default layout;
+class Layout extends React.Component{
+    state ={
+        showSideDrawer: true
+    }
+
+    sideDrawerClosedHandler = () => {
+        this.setState({showSideDrawer:false})
+    }
+
+    render(){
+        return(
+            <Body>
+                <Toolbar />
+                <SideDrawer 
+                    open={this.state.showSideDrawer} 
+                    closed={this.sideDrawerClosedHandler}/>
+                <main className="content">{this.props.children}</main>
+            </Body>
+        )
+    }
+} 
+
+export default Layout;
