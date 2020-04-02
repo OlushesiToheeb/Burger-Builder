@@ -3,7 +3,7 @@
 }
 
 
-@media(min-width: 500px){
+/* @media(min-width: 500px){
     .content {
         margin-top: auto;
         display: grid;
@@ -11,4 +11,4 @@
         grid-gap: 2em;
         height: 100vh;
     }
-}
+} */

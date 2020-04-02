@@ -12,6 +12,7 @@ class Modal extends React.Component {
     UNSAFE_componentWillUpdate(){
         console.log("[Modal] willupdate")
     }
+    
     render(){
         return(
             <Body>

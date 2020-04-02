@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import Body from "../../hoc/Body";
+import axios from "axios";
 
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
-import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import axiosPost from "../../axios-orders";
 import withErrorhandler from "../../hoc/withErroHandler";
-
 
 
 const INGREDIENT_PRICES ={
@@ -18,31 +18,39 @@ const INGREDIENT_PRICES ={
     bacon:0.7
 }
 
+
 class BurgerBuilder extends Component{
     state={
         ingredients:null,
         totalPrice: 4,
-        purchasable: false,
+        purchasable: false,  
         purchasing:false,
         loading:false,
         error: false
     }
 
+    
+    
     componentDidMount(){
-        axios.get("https://react-my-burger-f012b.firebaseio.com/ingredients.json")
-            .then(resp =>{
-                this.setState({ingredients:resp.data})
-            }).catch(err => {
-                this.setState({error: true})
+        axios.get('https://react-my-burger-f012b.firebaseio.com/ingredients.json')
+            .then(res =>{
+                console.log(res, res.data)
+                this.setState({ingredients:res.data})
             })
-    }
-
+            .catch(err =>{
+                console.log(err, err.message)
+                this.setState({error:true});
+            })
+    } 
+    
+        
+    
     purchaseCancelHandler =()=>{
         this.setState({purchasing:false})
     }
-
+        
     purchaseContinueHandler =()=>{
-        // alert("You continue!");.
+        // alert("You continue!");
         
         this.setState({ loading :true })
 
@@ -60,15 +68,17 @@ class BurgerBuilder extends Component{
             },
             delliveryMethod:"fastest"
         }
-        axios.post('/orders.json', order)
+        axiosPost.post('/orders.json', order)
         .then(resp =>{
-            // console.log(resp)
+            console.log(resp, resp.data)
             this.setState({ loading:false, purchasing:false })
         })
         .catch(err => {
             this.setState({ loading:false,  purchasing:false})
         })
     }
+    
+
 
     purchaseHandler = () =>{
         this.setState({purchasing:true})
