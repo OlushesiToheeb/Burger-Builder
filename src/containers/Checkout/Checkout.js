@@ -8,19 +8,21 @@ import ContactData from "./ContactData/ContactData";
 
 class Checkout extends Component{
     state={
-        ingredient:{
-            salad:1,
-            bacon:1,
-            cheese:1,
-            meat:1
-        },
+        ingredient:null,
+        price:0
     }
     
-    componentDidMount(){
+    UNSAFE_componentWillMount(){
         const  ingredients = queryString.parse(this.props.location.search);
-        console.log(ingredients)
         
-        this.setState({ingredient: ingredients})
+        let price = 0;
+        if(queryString === 'price '){
+            price = queryString
+        }
+            
+        this.setState({ingredient: ingredients, totalPrice:price})
+        
+        console.log(ingredients)
 
     }
 
@@ -43,7 +45,12 @@ class Checkout extends Component{
                 checkoutCancelled={this.checkoutCancelledHandler}
                 checkoutContinue={this.checkoutContinueHandler}
                 /> 
-                <Route path={this.props.match.path + '/contact-data'} component={ContactData}/>
+                <Route 
+                    path={this.props.match.path + '/contact-data'} 
+                    render={(props) => <ContactData
+                    ingredients={this.state.ingredient} 
+                    price ={this.state.totalPrice}
+                    {...props}/>}/>
             </div>
         )
     }
