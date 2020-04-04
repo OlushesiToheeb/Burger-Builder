@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import queryString from "query-string";
+import { Route } from "react-router-dom";
+import ContactData from "./ContactData/ContactData";
 
 
 
@@ -32,7 +34,7 @@ class Checkout extends Component{
     }
 
     render(){
-        console.log(this.state)
+        
         return(
         
             <div>
@@ -41,7 +43,7 @@ class Checkout extends Component{
                 checkoutCancelled={this.checkoutCancelledHandler}
                 checkoutContinue={this.checkoutContinueHandler}
                 /> 
-               <p>{this.state.ingredient.salad}</p>
+                <Route path={this.props.match.path + '/contact-data'} component={ContactData}/>
             </div>
         )
     }
