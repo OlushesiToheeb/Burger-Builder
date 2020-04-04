@@ -1,35 +1,34 @@
-import React from 'react';
+import React from "react";
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 import "./Burger.css";
-import { withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-class Burger extends React.Component{
-    render(){
-        
-        let transformedIngredients = Object.keys(this.props.ingredients)
-            .map(igKey => {
-            return[...Array(this.props.ingredients[igKey])]
-
-            .map((_, i) =>(
-                <BurgerIngredient key={igKey + [i]} type={igKey}/>
-                ));
-            }).reduce((arr, el) => {
-                return arr.concat(el)
-            },[])
-            
-        if(transformedIngredients.length === 0){
-            transformedIngredients = <p>Please start adding ingredients!</p>
+const Burger = (props) => {
+  const transformedIngredients = () => {
+    const tIngredients = [];
+    Object.keys(props.ingredients).map((igKey) => {
+      if (props.ingredients[igKey] > 0) {
+        for (var j = 0; j < props.ingredients[igKey]; j++) {
+          tIngredients.push(
+            <BurgerIngredient key={igKey + [j]} type={igKey} />
+          );
         }
+      }
+      return null;
+    });
 
-        return (
+    return tIngredients.reduce((arr, el) => {
+      return arr.concat(el);
+    }, []);
+  };
 
-            <div className="Burger">
-                <BurgerIngredient  type="bread-top"/>
-                {transformedIngredients}
-                <BurgerIngredient  type="bread-bottom"/>
-            </div>
-        )
-    }
-}
+  return (
+    <div className="Burger">
+      <BurgerIngredient type="bread-top" />
+      {transformedIngredients().length === 0 ? (<p>Please start adding ingredients!</p>) : transformedIngredients()}
+      <BurgerIngredient type="bread-bottom" />
+    </div>
+  );
+};
 
 export default withRouter(Burger);

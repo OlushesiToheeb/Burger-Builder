@@ -19,16 +19,6 @@ class Checkout extends Component{
         console.log(ingredients)
         
         this.setState({ingredient: ingredients})
-        // const query = new URLSearchParams(this.props.location.search);
-        // console.log(this.props.location.search);
-        // let ingredients={};
- 
-        // for(let param of query.entries){
-        //     // ['salad'. '1']
-        //     ingredients[param[0]] = + param[1]
-        // }
-
-        // this.setState({ ingredient:ingredients})
 
     }
 
