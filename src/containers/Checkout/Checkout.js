@@ -13,17 +13,23 @@ class Checkout extends Component{
     }
     
     UNSAFE_componentWillMount(){
-        const  ingredients = queryString.parse(this.props.location.search);
-        
-        let price = 0;
-        if(queryString === 'price '){
-            price = queryString
-        }
+        // const  ingredients = queryString.parse(this.props.location.search);
             
-        this.setState({ingredient: ingredients, totalPrice:price})
+        // this.setState({ingredient: ingredients, totalPrice:price})
         
-        console.log(ingredients)
+        // console.log(ingredients)
 
+        const query = new URLSearchParams(this.props.location.search)
+        const ingredients ={};
+        let price = 0;
+        for(let param of query.entries()){
+            if(param[0] === 'price'){
+                price = param[1];
+            }else{
+                ingredients[param[0]] = +param[1];
+            }
+        }
+        this.setState({ingredient:ingredients, totalPrice:price})
     }
 
 
