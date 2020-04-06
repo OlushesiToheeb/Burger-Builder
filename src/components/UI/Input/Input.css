@@ -12,8 +12,8 @@
 
 
 .InputElement{
-    border-bottom: 1px solid #ccc;
-    outline: none;
+    border: 1px solid #ccc;
+    outline:none;
     background-color: white;
     font:inherit;
     padding:6px 10px;
