@@ -21,7 +21,7 @@ const order = (props) => {
                         display:'inline-block',
                         margin:'0 8px',
                         padding:'5px',
-                        border:'ipx solid #ccc'
+                        border:'1px solid #ccc'
                     }}
                     key={ig.name}>
                         {ig.name} ({ig.amount})
