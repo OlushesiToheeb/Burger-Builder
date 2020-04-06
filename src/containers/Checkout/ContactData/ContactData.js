@@ -49,9 +49,9 @@ class ContactData extends React.Component{
                 value:''
             },
             delliveryMethod:{
-                elementType:'input',
+                elementType:'select',
                 elementConfig:{
-                    option:[
+                    options:[
                         {value: "fastest", displayValue:"Fastest" },
                         {value: "cheapest", displayValue:"Cheapest" }
                     ]
