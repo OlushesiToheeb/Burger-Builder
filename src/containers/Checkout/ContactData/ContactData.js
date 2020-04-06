@@ -6,12 +6,58 @@ import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input"
 
 class ContactData extends React.Component{
-    state={
-        name:'',
-        email:'',
-        address:{
-            street:'',
-            postalCode:''
+    state = {
+        orderForm:{
+            name:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Your Name'
+                },
+                value:''
+            },
+            street: {
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Your Street'
+                },
+                value:''
+            },
+            zipCode:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'ZIP CODE'
+                },
+                value:''
+            },
+            country:{
+                elementType:'input',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Country'
+                },
+                value:''
+            },
+            email:{
+                elementType:'input',
+                elementConfig:{
+                    type:'email',
+                    placeholder:'Your Email'
+                },
+                value:''
+            },
+            delliveryMethod:{
+                elementType:'input',
+                elementConfig:{
+                    option:[
+                        {value: "fastest", displayValue:"Fastest" },
+                        {value: "cheapest", displayValue:"Cheapest" }
+                    ]
+                },
+                value:''
+            }
         },
         loading:false
     }
@@ -23,17 +69,7 @@ class ContactData extends React.Component{
 
         const order ={
             ingredients:this.props.ingredients,
-            price:this.props.price,
-            customer:{
-                name:"Olushesi Toheeb",
-                address:{
-                    street: "Teststreet 1",
-                    zipCode:"41351",
-                    country:"Nigeria"
-                },
-                email:"test@test.com"
-            },
-            delliveryMethod:"fastest"
+            price:this.props.price
         }
         axiosPost.post('/orders.json', order)
         .then(resp =>{
@@ -49,7 +85,7 @@ class ContactData extends React.Component{
     render(){
         let  form = (
             <form>
-                    <Input inputtype = 'input' text="text" name="name" placeholder='Your name'/>
+                    <Input elementType='...' elementConfig='...' value='...'/>
                     <Input inputtype = 'input' text="email" name="email" placeholder='Your email'/>
                     <Input inputtype = 'input' text="text" name="street" placeholder='Street'/>
                     <Input inputtype = 'input' text="text" name="postal" placeholder='Postal Code'/>
