@@ -11,7 +11,10 @@
     font-weight: bold;
 }
 
-
+.Button:disabled{
+    color:#ccc;
+    cursor: not-allowed;
+}
 .Danger{
     color:red;
 }
@@ -19,3 +22,4 @@
 .success{
     color:green;
 }
+

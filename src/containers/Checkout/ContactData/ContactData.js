@@ -71,7 +71,8 @@ class ContactData extends React.Component{
                 validation:{
                     required:true
                 },
-                valid:false,touched:false
+                valid:false,
+                touched:false
             },
             delliveryMethod:{
                 elementType:'select',
@@ -81,9 +82,12 @@ class ContactData extends React.Component{
                         {value: "cheapest", displayValue:"Cheapest" }
                     ]
                 },
-                value:''
+                value:'fastest',
+                validation:{},
+                valid: true
             }
         },
+        formIsValid:false,
         loading:false
     }
 
@@ -141,8 +145,12 @@ class ContactData extends React.Component{
        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
        updatedOrderForm[inputIdentifier] = updatedFormElement;
        updatedFormElement.touched= true;
-       console.log(updatedFormElement)
-       this.setState({orderForm : updatedOrderForm})
+
+       let formIsValid = true;
+       for(let inputIdentifier in updatedOrderForm){
+            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid
+       }
+       this.setState({orderForm : updatedOrderForm, formIsValid:formIsValid})
     }
 
     render(){
@@ -167,7 +175,7 @@ class ContactData extends React.Component{
                             touched={formElement.config.touched}
                             changed={(event)=>this.inputChangedHandler(event, formElement.id)}/>
                     ))}
-                    <Button btnType='success' clicked={this.orderHandler}>ORDER</Button>
+                    <Button btnType='success' clicked={this.orderHandler} disabled={!this.state.formIsValid}>ORDER</Button>
             </form>
         )
 
