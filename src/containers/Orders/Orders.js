@@ -1,7 +1,8 @@
 import React from 'react';
 import Order from "../../components/Order/Order";
 import axiosOrder from '../../axios-orders';
-import withErrorHandler from "../../hoc/withErroHandler"
+import withErrorHandler from "../../hoc/withErroHandler";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 class Orders extends React.Component{
     state ={
@@ -21,7 +22,7 @@ class Orders extends React.Component{
                     
                 }
                 this.setState({loading : false, orders:fetchedOrder})
-                console.log(res, res.data);
+                
             })
             .catch(err =>{
                 this.setState({loading : false})
@@ -29,7 +30,8 @@ class Orders extends React.Component{
     }
 
     render(){
-        return(
+
+        let orders = (
             <div>
                 {this.state.orders.map(order =>(
                     <Order 
@@ -38,7 +40,18 @@ class Orders extends React.Component{
                         price={+order.price}/>
                 ))}
             </div>
-        );
+        )
+
+        if(this.state.loading){
+            orders= <Spinner/>
+        }
+
+        return(
+            <div>
+                {orders}
+            </div>
+        )  
+        ;
     }
 }
 
