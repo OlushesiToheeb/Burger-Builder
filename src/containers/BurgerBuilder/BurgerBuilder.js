@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Body from "../../hoc/Body";
 import axios from "axios";
-
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
@@ -22,21 +21,14 @@ class BurgerBuilder extends Component{
         //ingredients:null,  
         purchasing:false,
         loading:false,
-        error: false
+        
     }
 
     
     
     componentDidMount(){
-        // console.log(this.props)
-        // axios.get('https://react-my-burger-f012b.firebaseio.com/ingredients.json')
-        //     .then(res =>{
-        //         this.setState({ingredients:res.data})
-        //     })
-        //     .catch(err =>{
-        //         console.log(err, err.message)
-        //         this.setState({error:true});
-        //     })
+        console.log(this.props)
+        
     } 
     
         
@@ -81,7 +73,7 @@ class BurgerBuilder extends Component{
 
         let orderSummary = null;
 
-        let burger = this.state.error ? <h1 style={{marginTop:"2em"}}>Ingredients can't be loaded!</h1> : <Spinner /> ;
+        let burger = this.props.error ? <h1 style={{marginTop:"2em"}}>Ingredients can't be loaded!</h1> : <Spinner /> ;
         
         if(this.props.ings){
             
@@ -127,7 +119,8 @@ class BurgerBuilder extends Component{
 const mapStateToProps = (state) => {
     return{
         ings: state.ingredients,
-        price : state.totalPrice
+        price : state.totalPrice,
+        error: state.error
     }
 }
 

@@ -1,3 +1,4 @@
-export { addIngregient, 
+export { 
+    addIngregient, 
     removeIngregient
 } from '../actions/burgerBuilder';
