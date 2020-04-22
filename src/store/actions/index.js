@@ -1,4 +1,5 @@
 export { 
     addIngregient, 
-    removeIngregient
+    removeIngregient,
+    initIngredients
 } from '../actions/burgerBuilder';
