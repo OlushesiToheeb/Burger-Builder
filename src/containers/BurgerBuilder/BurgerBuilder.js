@@ -11,7 +11,8 @@ import withErrorhandler from "../../hoc/withErroHandler";
 
 import { connect } from "react-redux";
 
-import * as burgerBuilderActions from '../../store/actions/index';
+
+import * as actions from '../../store/actions/index';
 
 
 
@@ -29,7 +30,7 @@ class BurgerBuilder extends Component{
     componentDidMount(){
         console.log(this.props)
         this.props.onInitIngredients()
-    } 
+    }
     
         
     
@@ -38,7 +39,7 @@ class BurgerBuilder extends Component{
     }
         
     purchaseContinueHandler =()=>{
-        // alert("You continue!");
+        this.props.onInitPurchase();
         this.props.history.push('/checkout');
     }
     
@@ -126,9 +127,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onIngredientAdded :(ingName) => dispatch(burgerBuilderActions.addIngregient(ingName)),
-        onIngredientRemoved :(ingName) => dispatch(burgerBuilderActions.removeIngregient(ingName)),
-        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
+        onIngredientAdded :(ingName) => dispatch(actions.addIngregient(ingName)),
+        onIngredientRemoved :(ingName) => dispatch(actions.removeIngregient(ingName)),
+        onInitIngredients: () => dispatch(actions.initIngredients()),
+        onInitPurchase: () => dispatch(actions.purchaseInit())
     }
 }
 

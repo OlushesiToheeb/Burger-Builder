@@ -170,7 +170,12 @@ class ContactData extends React.Component{
                             touched={formElement.config.touched}
                             changed={(event)=>this.inputChangedHandler(event, formElement.id)}/>
                     ))}
-                    <Button btnType='success' clicked={this.orderHandler} disabled={!this.state.formIsValid}>ORDER</Button>
+                    <Button 
+                        btnType='success' 
+                        clicked={this.orderHandler} 
+                        disabled={!this.state.formIsValid}>
+                            ORDER
+                    </Button>
             </form>
         )
 

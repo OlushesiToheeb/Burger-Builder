@@ -1,6 +1,7 @@
 .ToggleButton{
     color:white;
-    font-size: 1.8em;
+    font-size: 1.5em;
+    font-weight: normal;
 }
 
 @media (min-width: 500px) {
