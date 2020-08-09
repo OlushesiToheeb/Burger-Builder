@@ -93,7 +93,7 @@ class Auth extends Component {
         });
     }
 
-    const form = formElementsArray.map(formElement => (
+    const authForm = formElementsArray.map(formElement => (
       <Input 
         key={formElement.id}
         elementType={formElement.config.elementType}
@@ -108,7 +108,7 @@ class Auth extends Component {
     return(
       <div className="Auth">
         <form onSubmit={this.submitHandler}>
-          {form}
+          {authForm }
           <Button btnType ='success'>SUBMIT</Button>
         </form>
       </div>
