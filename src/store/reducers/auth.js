@@ -3,31 +3,48 @@ import { updateObject } from '../../utils';
 
 const initialState ={
   authData : null,
-  error : null
+  error : null,
+  token : null,
+  userId: null,
+  loading : false,
 }
 
 const reducer = (state = initialState , action) =>{
   switch(action.type){
+    case actionTypes.AUTH_START:
+      return authStart(state)
     case actionTypes.AUTH_SUCCESS:
-      return setauthData(state, action)
+      return authSuccess(state, action)
     case actionTypes.AUTH_FAIL:
-      return seterror(state, action) 
+      return authFail(state, action) 
     default:
       return state;
   }
 }
 
-const setauthData = (state, action) => {
+const authStart = (state) => {
   return{
     ...state,
-    authData : action.authData
+    error: null,
+    loading : true
   }
 }
 
-const seterror = (state, action) => {
+const authSuccess = (state, action) =>{
   return{
     ...state,
-    error : action.error
+    token : action.token,
+    userId : action.userId,
+    error: null,
+    loading: false
+  }
+}
+
+const authFail = (state, action) =>{
+  return{
+    ...state,
+    error: action.error,
+    loading: false
   }
 }
 
