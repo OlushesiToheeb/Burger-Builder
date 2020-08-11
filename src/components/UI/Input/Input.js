@@ -50,10 +50,10 @@ const input = (props) =>{
     }
 
     return(
-        <form className='Input'>
+        <div className='Input'>
             <label className='Label'>{props.label}</label>
             {inputElement}
-        </form>
+        </div>
     )
 };
 
