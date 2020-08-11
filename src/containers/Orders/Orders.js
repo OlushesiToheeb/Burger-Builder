@@ -9,13 +9,12 @@ import * as actions from '../../store/actions/index';
 class Orders extends React.Component{
 
     componentDidMount(){
-       this.props.onFetchorders()
+       this.props.onFetchorders(this.props.token, this.props.userId)
     }
 
     render(){
 
         let order= <Spinner/>
-        console.log(this.props.orders)
         if(!this.props.loading){
             order = (
                 <div>
@@ -41,13 +40,15 @@ class Orders extends React.Component{
 const mapStateToProps = state => {
     return{
         orders : state.order.orders,
-        loading: state.order.loading
+        loading: state.order.loading,
+        token: state.auth.token,
+        userId : state.auth.userId
     }
 }
 
 const mapDispatchToProps = dispatch =>{
     return{
-        onFetchorders: () => dispatch(actions.fetchOrders()),
+        onFetchorders: (token, userId) => dispatch(actions.fetchOrders(token, userId)),
     }
 }
 
