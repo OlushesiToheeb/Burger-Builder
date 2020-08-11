@@ -6,10 +6,15 @@ import Orders from "./containers/Orders/Orders";
 import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/logout';
 import { Route , Switch} from "react-router-dom";
+import { connect } from 'react-redux';
+import { authCheckState } from './store/actions/';
 
 
 class App extends React.Component{
  
+  componentDidMount(){
+    this.props.dispatch(authCheckState())
+  }
 
   render(){
     return(
@@ -28,4 +33,4 @@ class App extends React.Component{
   }
 }
 
-export default App;
+export default connect()(App);
